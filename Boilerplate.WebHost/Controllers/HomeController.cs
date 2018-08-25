@@ -10,6 +10,7 @@ using Dapper.Contrib.Extensions;
 using MySql.Data.MySqlClient;
 using Boilerplate.Core.Entitys;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Boilerplate.WebHost.Controllers
 {
@@ -31,6 +32,13 @@ namespace Boilerplate.WebHost.Controllers
             if (string.IsNullOrWhiteSpace(fileName))
                 fileName = "temp";
             fileName = fileName.Replace(' ', '_');
+            //'A' <'z'
+            if (fileName[0] < 'A' || fileName[0] > 'z')
+                return "项目名称请以字符开头";
+            Regex regex = new Regex(@"^[A-Za-z0-9._\-\[\]]+$");
+            if (!regex.IsMatch(fileName))
+                return "项目名称只能包含字母、数字、逗号、下划线、中划线等";
+
             //要被下载的文件路径
             var filePath = Directory.GetCurrentDirectory() + $"/File/DownloadProject/{fileName}.tgz";
             var dbConnection = new MySqlConnection(configuration.GetValue<string>("MySQLSPConnection"));

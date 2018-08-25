@@ -5,7 +5,7 @@
 
 <div class="content">
     <div>
-        <input type="text" id="fileName" />
+        <input type="text" id="fileName" placeholder="请输入项目名称" />
         <button type="button" id="but_download">
             下载模版
         </button>
@@ -20,9 +20,34 @@
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>
-        $("#but_download").click(function () {
-            location.href = "/Home/Download?fileName=" + $("#fileName").val();
+
+        $("#fileName").keydown(function (event) {
+            if (event.keyCode == "13") {
+                //回车执行查询
+                $('#but_download').click();
+            }
         });
+
+        var reg = new RegExp(/^[A-Za-z0-9._\-\[\]]+$/);
+        var reg2 = new RegExp(/^[A-Za-z]+$/);
+        $("#but_download").click(function () {
+            var fileName = $("#fileName").val();
+            if (!fileName) {
+                alert("请输入项目名称");
+                return;
+            }
+            if (!reg2.test(fileName && fileName[0])) {
+                alert("项目名称请以字母开头");
+                return;
+            }
+            if (!reg.test(fileName)) {
+                alert("项目名称只能包含字母、数字、逗号、下划线、中划线等");
+                return;
+            }
+
+            location.href = "/Home/Download?fileName=" + fileName;
+        });
+
     </script>
 }
 
