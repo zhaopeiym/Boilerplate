@@ -1,0 +1,1 @@
+﻿docker run -dp 2080:80 -v /fileData/boilerplate:/app/File boilerplate

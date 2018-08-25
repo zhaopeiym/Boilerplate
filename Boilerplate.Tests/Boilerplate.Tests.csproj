@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Boilerplate.Application\Boilerplate.Application.csproj" />
+    <ProjectReference Include="..\Boilerplate.Common\Boilerplate.Common.csproj" />
+    <ProjectReference Include="..\Boilerplate.Core\Boilerplate.Core.csproj" />
+    <ProjectReference Include="..\Boilerplate.Repository\Boilerplate.Repository.csproj" />
+    <ProjectReference Include="..\Boilerplate.WebHost\Boilerplate.WebHost.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "下载项目模版";
+}
+
+
+<div class="content">
+    <div>
+        <input type="text" id="fileName" />
+        <button type="button" id="but_download">
+            下载模版
+        </button>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        $("#but_download").click(function () {
+            location.href = "/Home/Download?fileName=" + $("#fileName").val();
+        });
+    </script>
+}
+
+@section styles{
+    <link href="~/css/index.css" rel="stylesheet" />
+}
