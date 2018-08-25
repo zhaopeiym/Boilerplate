@@ -30,8 +30,9 @@ namespace Boilerplate.WebHost.Controllers
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 fileName = "temp";
+            fileName = fileName.Replace(' ', '_');
             //要被下载的文件路径
-            var filePath = Directory.GetCurrentDirectory() + $"/File/DownloadProject/{fileName}.tar";
+            var filePath = Directory.GetCurrentDirectory() + $"/File/DownloadProject/{fileName}.tgz";
             var dbConnection = new MySqlConnection(configuration.GetValue<string>("MySQLSPConnection"));
             var entity = await dbConnection.QueryFirstOrDefaultAsync<BoilerplatePO>("SELECT * from Boilerplates where fileName = @fileName;", new { fileName });
 
@@ -44,7 +45,7 @@ namespace Boilerplate.WebHost.Controllers
                     using (Process process = new Process())
                     {
                         process.StartInfo.FileName = "bash";
-                        process.StartInfo.Arguments =$" {Directory.GetCurrentDirectory()}/File/boilerplate.sh {fileName}";
+                        process.StartInfo.Arguments = $" {Directory.GetCurrentDirectory()}/File/boilerplate.sh {fileName}";
                         process.Start();
                         process.WaitForExit();
                         process.Close();
