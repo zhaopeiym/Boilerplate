@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Boilerplate.WebHost.Controllers
 {
+    [Route("[controller]/[Action]")]
     public class HomeController : Controller
     {
         private IConfiguration configuration;

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -31,7 +31,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Boilerplate.Application\Boilerplate.Application.csproj" />
-    <ProjectReference Include="..\Boilerplate.Common\Boilerplate.Common.csproj" />
+    <ProjectReference Include="..\Boilerplate.Core\Boilerplate.Core.csproj" />
+    <ProjectReference Include="..\Boilerplate.Repository\Boilerplate.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
