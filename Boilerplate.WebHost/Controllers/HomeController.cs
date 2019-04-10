@@ -1,16 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Boilerplate.Core.Entitys;
 using Boilerplate.WebHost.Models;
-using System.IO;
-using Microsoft.Extensions.Configuration;
 using Dapper;
-using Dapper.Contrib;
 using Dapper.Contrib.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
-using Boilerplate.Core.Entitys;
-using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Boilerplate.WebHost.Controllers
 {
@@ -81,6 +80,23 @@ namespace Boilerplate.WebHost.Controllers
             }
             var stream = System.IO.File.OpenRead(filePath);
             return File(stream, "application/octet-stream", Path.GetFileName(filePath));
+        }
+
+        [HttpGet]
+        public async Task<bool> Init(string key)
+        {
+            if (key == configuration.GetValue<string>("Key"))
+            {
+                using (Process process = new Process())
+                {
+                    process.StartInfo.FileName = "bash";
+                    process.StartInfo.Arguments = $" {Directory.GetCurrentDirectory()}/File/init.sh";
+                    process.Start();
+                    process.WaitForExit();
+                    process.Close();
+                };
+            }
+            return true;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

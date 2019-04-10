@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="File\init.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="File\boilerplate.sh">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
