@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace Boilerplate.WebHost.Controllers
 {
-    [Route("[controller]/[Action]")]
     public class HomeController : Controller
     {
         private IConfiguration configuration;
@@ -96,8 +95,9 @@ namespace Boilerplate.WebHost.Controllers
                     process.WaitForExit();
                     process.Close();
                 };
+                return true;
             }
-            return true;
+            return false;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
