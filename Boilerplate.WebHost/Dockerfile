@@ -17,7 +17,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 FROM microsoft/dotnet:2.1-sdk AS publish
 WORKDIR /src
 COPY . .
-WORKDIR /src/Boilerplate.WebHost
+WORKDIR /src
 RUN dotnet publish -c Release -o /app
 
 #构建镜像
